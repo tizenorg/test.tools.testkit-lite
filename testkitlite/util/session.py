@@ -484,7 +484,7 @@ class TestSession:
         root.insert(0, self.__get_environment())
         # add XSL support to testkit-lite
         declaration_text = """<?xml version="1.0" encoding="UTF-8"?>
-        <?xml-stylesheet type="text/xsl" href="testresult.xsl"?>\n"""
+        <?xml-stylesheet type="text/xsl" href="/testresult.xsl"?>\n"""
         try:
             with open(mergefile, 'w') as output:
                 output.write(declaration_text)
