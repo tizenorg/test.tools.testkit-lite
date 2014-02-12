@@ -51,7 +51,6 @@ sed -i '/^#!/d' ./testkitlite/engines/default/worker.py
 %install
 python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %fdupes $RPM_BUILD_ROOT
-rm -rf $RPM_BUILD_ROOT/opt/testkit/lite/VERSION
 rm -rf $RPM_BUILD_ROOT/opt/testkit/lite/testkit-lite_user_guide_for_tct.pdf
 
 
@@ -72,3 +71,4 @@ chmod ugo+rwx /opt/testkit/lite
 %{python_sitelib}/testkitlite/*
 %{python_sitelib}/commodule/*
 %{python_sitelib}/testkit_lite-%{version}-py%{py_ver}.egg-info/*
+/opt/testkit/lite/VERSION
