@@ -14,6 +14,7 @@ BuildRequires:  python
 Requires:       python
 Requires:       python-lxml
 Requires:       python-requests
+Requires:       testkit-stub
 BuildArch:      noarch
 
 %{!?python_sitelib: %define python_sitelib %(python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
@@ -75,7 +76,7 @@ chmod ugo+rwx /opt/testkit/lite
 /opt/testkit/lite/test_definition_schema.pdf
 %{_bindir}/testkit-lite
 %{_bindir}/testkit-lite-dbus
-%{_sysconfdir}/dbus-1/system.d/com.intel.testkit.conf
+%config %{_sysconfdir}/dbus-1/system.d/com.intel.testkit.conf
 %{python_sitelib}/testkitlite/*
 %{python_sitelib}/commodule/*
 %{python_sitelib}/testkit_lite-%{version}-py%{py_ver}.egg-info/*
