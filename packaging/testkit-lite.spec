@@ -1,7 +1,7 @@
 Summary:        Test runner with a command-line interface
 Name:           testkit-lite
-Version:        3.0.7
-Release:        1
+Version:        3.1.0
+Release:        0
 URL:            https://github.com/testkit/testkit-lite
 License:        GPL-2.0
 Group:          Development/Testing
@@ -29,23 +29,26 @@ testkit-lite is a test runner with command-line interface. It has the following 
 %prep
 %setup -q
 cp %{SOURCE1001} .
-
 # for rpmlint warning: remove shebang from python library
-sed -i '/^#!/d' ./commodule/config.py
-sed -i '/^#!/d' ./commodule/connector.py
-sed -i '/^#!/d' ./commodule/log.py
-sed -i '/^#!/d' ./commodule/killall.py
-sed -i '/^#!/d' ./commodule/autoexec.py
-sed -i '/^#!/d' ./commodule/httprequest.py
-sed -i '/^#!/d' ./commodule/str2.py
-sed -i '/^#!/d' ./commodule/impl/androidmobile.py
-sed -i '/^#!/d' ./commodule/impl/tizenivi.py
-sed -i '/^#!/d' ./commodule/impl/tizenpc.py
-sed -i '/^#!/d' ./commodule/impl/localhost.py
-sed -i '/^#!/d' ./commodule/impl/tizenmobile.py
-sed -i '/^#!/d' ./testkitlite/common/process_killall.py
-sed -i '/^#!/d' ./testkitlite/engines/default/runner.py
-sed -i '/^#!/d' ./testkitlite/engines/default/worker.py
+sed -i '/^#!/d' ./testkitlite/commodule/androidmobile.py
+sed -i '/^#!/d' ./testkitlite/commodule/localhost.py
+sed -i '/^#!/d' ./testkitlite/commodule/tizenivi.py
+sed -i '/^#!/d' ./testkitlite/commodule/tizenlocal.py
+sed -i '/^#!/d' ./testkitlite/commodule/tizenmobile.py
+sed -i '/^#!/d' ./testkitlite/engines/androidunit.py
+sed -i '/^#!/d' ./testkitlite/engines/default.py
+sed -i '/^#!/d' ./testkitlite/engines/pyunit.py
+sed -i '/^#!/d' ./testkitlite/util/autoexec.py
+sed -i '/^#!/d' ./testkitlite/util/config.py
+sed -i '/^#!/d' ./testkitlite/util/connector.py
+sed -i '/^#!/d' ./testkitlite/util/errors.py
+sed -i '/^#!/d' ./testkitlite/util/httprequest.py
+sed -i '/^#!/d' ./testkitlite/util/killall.py
+sed -i '/^#!/d' ./testkitlite/util/log.py
+sed -i '/^#!/d' ./testkitlite/util/process.py
+sed -i '/^#!/d' ./testkitlite/util/result.py
+sed -i '/^#!/d' ./testkitlite/util/session.py
+sed -i '/^#!/d' ./testkitlite/util/str2.py
 
 
 %build
@@ -53,32 +56,23 @@ sed -i '/^#!/d' ./testkitlite/engines/default/worker.py
 
 %install
 python setup.py install --prefix=%{_prefix} --root=%{buildroot}
-%fdupes $RPM_BUILD_ROOT
-rm -rf $RPM_BUILD_ROOT/opt/testkit/lite/testkit-lite_user_guide_for_tct.pdf
-
-
-%clean
-rm -rf %{buildroot}
-
-
-%post
-# Set permissions
-chmod ugo+rwx /opt/testkit/lite
+%fdupes %{buildroot}
+pushd %{buildroot}%{python_sitelib}
+%py_compile .
+popd
 
 
 %files
 %manifest %{name}.manifest
 %defattr(-,root,root)
 %license LICENSE
-%doc
+%config %{_sysconfdir}/dbus-1/system.d/com.intel.testkit.conf
+%{_bindir}/testkit-lite
+%{_bindir}/testkit-lite-dbus
 /opt/testkit/lite/testkit-lite_user_guide.pdf
 /opt/testkit/lite/testkit-lite_tutorial.pdf
 /opt/testkit/lite/test_definition_schema.pdf
-%{_bindir}/testkit-lite
-%{_bindir}/testkit-lite-dbus
-%config %{_sysconfdir}/dbus-1/system.d/com.intel.testkit.conf
 %{python_sitelib}/testkitlite/*
-%{python_sitelib}/commodule/*
 %{python_sitelib}/testkit_lite-%{version}-py%{py_ver}.egg-info/*
 /opt/testkit/lite/VERSION
 /opt/testkit/lite/commodule/CONFIG
