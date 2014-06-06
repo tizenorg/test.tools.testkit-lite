@@ -237,7 +237,7 @@ def _web_test_exec(conn, server_url, test_web_app, exetype, cases_queue, result_
                 test_set_finished = True
                 result_obj.set_status(1)
                 break
-            time.sleep(2)
+            time.sleep(5)
 
 
 def _webuifw_test_exec(conn, test_web_app, test_session, test_set_name, exetype, cases_queue, result_obj):
