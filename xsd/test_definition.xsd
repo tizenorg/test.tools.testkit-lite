@@ -67,6 +67,16 @@
         </xs:restriction>
       </xs:simpleType>
     </xs:attribute>
+    <!-- added to enable name attribute in a testcase element -->
+    <xs:attribute name="name">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:minLength value="1"/>
+          <xs:whiteSpace value="collapse"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <!-- end of addition -->
     <xs:attribute name="priority" type="priority_simple_type" use="required"/>
     <xs:attribute name="execution_type" type="execution_type_simple_type" use="required"/>
     <xs:attribute name="component" type="xs:string"/>
@@ -129,7 +139,8 @@
         <xs:choice minOccurs="0" maxOccurs="1">
           <xs:element ref="post_condition"/>
         </xs:choice>
-        <xs:element ref="steps" minOccurs="1" maxOccurs="1"/>
+	<!-- do not force to have at least a steps element -->
+        <xs:element ref="steps" minOccurs="0" maxOccurs="1"/>
         <xs:choice minOccurs="0" maxOccurs="1">
           <xs:element ref="test_script_entry"/>
         </xs:choice>
