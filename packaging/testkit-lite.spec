@@ -56,6 +56,8 @@ sed -i '/^#!/d' ./testkitlite/util/str2.py
 
 %install
 python setup.py install --prefix=%{_prefix} --root=%{buildroot}
+install -d %{buildroot}/%{_datadir}/%{name}
+cp -r xsd %{buildroot}/%{_datadir}/%{name}
 %fdupes %{buildroot}
 pushd %{buildroot}%{python_sitelib}
 %py_compile .
@@ -74,5 +76,6 @@ popd
 /opt/testkit/lite/test_definition_schema.pdf
 %{python_sitelib}/testkitlite/*
 %{python_sitelib}/testkit_lite-%{version}-py%{py_ver}.egg-info/*
+%{_datadir}/%{name}
 /opt/testkit/lite/VERSION
 /opt/testkit/lite/commodule/CONFIG

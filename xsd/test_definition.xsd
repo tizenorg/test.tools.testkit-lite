@@ -108,6 +108,8 @@
 		</xs:attribute>
 
 		<xs:attribute name="component" type="xs:string"></xs:attribute>
+		<!-- added to enable name attribute in a testcase element -->
+		<xs:attribute name="name" type="xs:string"></xs:attribute>
 
 		<xs:attribute name="requirement_ref" type="xs:anyURI"
 			use="optional">
@@ -211,8 +213,8 @@
 				<xs:choice minOccurs="0" maxOccurs="1">
 					<xs:element ref="post_condition"></xs:element>
 				</xs:choice>
-
-				<xs:element ref="steps" minOccurs="1" maxOccurs="1"></xs:element>
+				<!-- do not force to have at least a steps element -->
+				<xs:element ref="steps" minOccurs="0" maxOccurs="1"></xs:element>
 
 				<xs:choice minOccurs="0" maxOccurs="1">
 					<xs:element ref="test_script_entry"></xs:element>
