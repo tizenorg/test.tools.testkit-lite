@@ -1,6 +1,6 @@
 Summary:        Test runner with a command-line interface
 Name:           testkit-lite
-Version:        3.1.0
+Version:        3.1.7
 Release:        0
 URL:            https://github.com/testkit/testkit-lite
 License:        GPL-2.0
@@ -49,6 +49,7 @@ sed -i '/^#!/d' ./testkitlite/util/process.py
 sed -i '/^#!/d' ./testkitlite/util/result.py
 sed -i '/^#!/d' ./testkitlite/util/session.py
 sed -i '/^#!/d' ./testkitlite/util/str2.py
+sed -i '/^#!/d' ./testkitmerge/merger.py
 
 
 %build
@@ -71,10 +72,13 @@ popd
 %config %{_sysconfdir}/dbus-1/system.d/com.intel.testkit.conf
 %{_bindir}/testkit-lite
 %{_bindir}/testkit-lite-dbus
+%{_bindir}/testkit-merge
+/opt/testkit/lite/mh.html
 /opt/testkit/lite/testkit-lite_user_guide.pdf
 /opt/testkit/lite/testkit-lite_tutorial.pdf
 /opt/testkit/lite/test_definition_schema.pdf
 %{python_sitelib}/testkitlite/*
+%{python_sitelib}/testkitmerge/*
 %{python_sitelib}/testkit_lite-%{version}-py%{py_ver}.egg-info/*
 %{_datadir}/%{name}
 /opt/testkit/lite/VERSION

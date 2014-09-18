@@ -46,7 +46,7 @@ setup(
                   ('/opt/testkit/lite/commodule/', ['CONFIG']),
                   ('/opt/testkit/lite', ['resource/mh.html']),
                   ('/etc/dbus-1/system.d/', ['dbus/com.intel.testkit.conf'])],
-    scripts = ('testkit-lite', 'dbus/testkit-lite-dbus'),
+    scripts = ('testkit-lite', 'dbus/testkit-lite-dbus', 'testkit-merge'),
     packages = find_packages(),
     cmdclass = {'install_data': post_install_cmd},
 )
