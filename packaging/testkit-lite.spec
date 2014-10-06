@@ -11,6 +11,7 @@ BuildRequires:  fdupes
 BuildRequires:  python-distribute
 BuildRequires:  python-requests
 BuildRequires:  python
+Requires:       dbus-python
 Requires:       python
 Requires:       python-lxml
 Requires:       python-requests
