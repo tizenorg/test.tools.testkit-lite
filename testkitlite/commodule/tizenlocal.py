@@ -353,7 +353,7 @@ class tizenHost:
             cmdline = APP_NONBLOCK_STR % (wgt_name)
             exit_code, ret = shell_command(cmdline)
             time.sleep(3)
-            cmd = APP_QUERY_STR % (wgt_name)
+            cmd = APP_QUERY_STR % (wgt_name.split(" ")[-1])
             exit_code, ret = shell_command(cmd)
             if ret and len(ret):
                 blauched = True
