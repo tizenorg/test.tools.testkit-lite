@@ -201,7 +201,7 @@ def check_testcase(eltcase):
     try:
 	result = eltcase.get("result")
 	actual_result = eltcase.find("./result_info/actual_result").text
-	allowed_results = ["PASS", "FAIL", "N/A"]
+	allowed_results = ["PASS", "FAIL", "N/A", "BLOCK"]
     except AttributeError:
 	raise ElementError("result of the testcase is not valid !")
     if result not in allowed_results or result != actual_result:
